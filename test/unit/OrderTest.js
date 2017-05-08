@@ -1,5 +1,5 @@
 import Order from '../../src/Order';
-import {assert, expect} from 'chai';
+import {assert} from 'chai';
 import nock from 'nock';
 
 describe('Orders API Unit tests', function () {
@@ -9,7 +9,6 @@ describe('Orders API Unit tests', function () {
     this.token = 'tokentokentokentokentokentoken';
     this.items = [{id: 0, name: 'name-0'}, {id: 1, name: 'name-1'}];
     this.nock = function (req, data) {
-      console.log('reg', this.serviceURL + req);
       nock(this.serviceURL).get(req).reply(200, data);
     }
   });
