@@ -1,5 +1,5 @@
 {
-  "name": "plasma-membership-api-client-js",
+  "name": "plasma-order-api-client-js",
   "version": "1.0.15",
   "main": "dist/index.js",
   "scripts": {
@@ -17,13 +17,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Plasma-Platform/Plasma-Membership-JS-Client.git"
+    "url": "git+https://github.com/Plasma-Platform/Plasma-Orders-JS-Client.git"
   },
   "bugs": {
-    "url": "https://github.com/Plasma-Platform/Plasma-Membership-JS-Client/issues"
+    "url": "https://github.com/Plasma-Platform/Plasma-Orders-JS-Client/issues"
   },
-  "homepage": "https://github.com/Plasma-Platform/Plasma-Membership-JS-Client",
-  "description": "Memberships API JS client",
+  "homepage": "https://github.com/Plasma-Platform/Plasma-Orders-JS-Client",
+  "description": "Orders API JS client",
   "babel": {
     "presets": [
       "latest",
