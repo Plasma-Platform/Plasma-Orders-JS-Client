@@ -180,7 +180,7 @@ export default class Order {
    * @method Orders#_isValidId
    */
   _isValidId (val) {
-    return typeof val == 'number' && val > 0;
+    return val || false;
   }
 
   /**
