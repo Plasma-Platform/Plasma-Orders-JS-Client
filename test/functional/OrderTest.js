@@ -14,8 +14,7 @@ describe('Order API Functional tests', function () {
 
   it('_isValidId', function () {
     assert.isTrue(this.api._isValidId(1));
-    assert.isFalse(this.api._isValidId(0));
-    assert.isFalse(this.api._isValidId(null));
     assert.isFalse(this.api._isValidId());
+    assert.isFalse(this.api._isValidId(undefined));
   });
 });
