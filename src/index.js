@@ -1,7 +1,6 @@
-import 'babel-polyfill';
 import 'bluebird';
 import 'isomorphic-fetch';
 
-import Membership from "./Membership";
+import Order from "./Order";
 
-export default Membership;
+export default Order;
