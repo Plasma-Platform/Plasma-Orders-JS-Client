@@ -169,7 +169,7 @@ export default class Order {
     if (!this._isValidId(productId)) {
       throw new Error('ID is not valid');
     }
-    const response = await this._fetchRequest(`${this.url}/orders/${orderId}/${productId}/download-link?locale=${this.locale}`, token);
+    const response = await this._fetchRequest(`${this.url}/orders/${orderId}/${productId}/download-link?locale=${this.locale}`, token, 'POST');
     return response.json();
   }
 
@@ -190,9 +190,22 @@ export default class Order {
    * @returns {Promise}
    * @method Orders#_fetchRequest
    */
-  async _fetchRequest (url, token = false) {
-    const headers = token ? new Headers({'Authorization' : token}) : {};
-    const response = await fetch(url, {headers : headers});
+  async _fetchRequest (url, token = false, method = 'GET', params={}) {
+    const headers = {};
+    if(token){
+      headers['Authorization'] = token;
+    }
+    if(method === 'POST' || method === 'PUT' || method === 'PATCH') {
+      headers['content-type'] = 'application/x-www-form-urlencoded';
+    }
+    let requestData = {
+      method  : method,
+      headers : new Headers(headers)
+    };
+    if (Object.keys(params).length) {
+      requestData['body'] = serialize(params);
+    }
+    let response  = await fetch(url, requestData);
     if (response.status >= 400) {
       throw new Error('Bad server response');
     }
