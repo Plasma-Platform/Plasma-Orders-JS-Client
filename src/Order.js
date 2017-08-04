@@ -212,7 +212,7 @@ export default class Order {
    * @method Orders#_isValidId
    */
   _isValidId (val) {
-    return val || false;
+    return !!val;
   }
 
   /**

@@ -13,7 +13,7 @@ describe('Orders API Unit tests', function () {
     };
     this.nockPost = function (req, data) {
       nock(this.serviceURL).post(req).reply(200, data);
-    }
+    };
   });
 
   it('Get list of users orders', function (done) {
