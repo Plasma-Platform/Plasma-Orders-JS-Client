@@ -174,6 +174,38 @@ export default class Order {
   }
 
   /**
+   * Check Download Link
+   * @param token {String} User token
+   * @param orderID {Number} Order ID
+   * @param productID {Number} Product ID
+   * @returns {Object} <pre>
+   * {
+   *  "orderId": "xdtGS1apwbLKmv9ZXOlV",
+   *  "productId": 123,
+   *  "link": "http://dddd.ccc/dgdfgdfg",
+   *  "downloadStatus": "inZipper",
+   *  "isExpired": false,
+   *  "rate": 1,
+   *  "zipperTime": 1
+   * }
+   * </pre>
+   * @method Orders#checkDownloadLink
+   */
+  async checkDownloadLink (token, orderId, productId) {
+    if (!token.length) {
+      throw new Error('Token can`t defined');
+    }
+    if (!this._isValidId(orderId)) {
+      throw new Error('ID is not valid');
+    }
+    if (!this._isValidId(productId)) {
+      throw new Error('ID is not valid');
+    }
+    const response = await this._fetchRequest(`${this.url}/orders/${orderId}/${productId}/download-link?locale=${this.locale}`, token);
+    return response.json();
+  }
+
+  /**
    * Return Correct id or not
    * @param id {Number} Product id
    * @returns {Bool}

@@ -10,6 +10,9 @@ describe('Orders API Unit tests', function () {
     this.items = [{id: 0, name: 'name-0'}, {id: 1, name: 'name-1'}];
     this.nock = function (req, data) {
       nock(this.serviceURL).get(req).reply(200, data);
+    };
+    this.nockPost = function (req, data) {
+      nock(this.serviceURL).post(req).reply(200, data);
     }
   });
 
@@ -30,8 +33,16 @@ describe('Orders API Unit tests', function () {
   });
 
   it('Restore download link request', function (done) {
-    this.nock('/orders/2/55555/download-link?locale=en', this.items);
+    this.nockPost('/orders/2/55555/download-link?locale=en', this.items);
     this.api.restoreDownloadLink(this.token, 2, 55555).then(response => {
+      assert.deepEqual(response, this.items);
+      done();
+    }).catch(done);
+  });
+
+  it('Check download link request', function (done) {
+    this.nock('/orders/2/55555/download-link?locale=en', this.items);
+    this.api.checkDownloadLink(this.token, 2, 55555).then(response => {
       assert.deepEqual(response, this.items);
       done();
     }).catch(done);
